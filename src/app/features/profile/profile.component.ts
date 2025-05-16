@@ -21,7 +21,7 @@ import { FormsModule } from '@angular/forms';
                   </div>
                 </div>
                 <h2 class="text-xl font-bold mt-4">John Doe</h2>
-                <p class="text-sm opacity-70">john@example.com</p>
+                <p class="text-sm opacity-70">john&#64;example.com</p>
               </div>
               
               <div class="divider"></div>
@@ -65,7 +65,7 @@ import { FormsModule } from '@angular/forms';
                     <label class="label">
                       <span class="label-text">Email</span>
                     </label>
-                    <input type="email" placeholder="john@example.com" class="input input-bordered" />
+                    <input type="email" placeholder="john&#64;example.com" class="input input-bordered" />
                   </div>
 
                   <div class="form-control mt-4">
