@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: true,
+  imports: [CommonModule, RouterOutlet],
+  template: `
+    <div class="min-h-screen bg-base-200">
+      <router-outlet></router-outlet>
+    </div>
+  `,
+  styles: []
 })
 export class AppComponent {
-  title = 'angular-tailwind-daisyui';
-  isDarkTheme = false;
-
-  toggleTheme() {
-    this.isDarkTheme = !this.isDarkTheme;
-    document.documentElement.setAttribute('data-theme', this.isDarkTheme ? 'dark' : 'light');
-  }
+  title = 'Ecoma Accounts';
 }
