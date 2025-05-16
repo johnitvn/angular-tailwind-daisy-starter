@@ -30,7 +30,7 @@ import { FormsModule } from '@angular/forms';
             </div>
 
             <div class="form-control mt-6">
-              <button routerLink="/profile"  class="btn btn-primary">Sign In</button>
+              <button routerLink="/auth/2fa"  class="btn btn-primary">Sign In</button>
             </div>
 
             <div class="divider">OR</div>
