@@ -27,7 +27,7 @@ import { FormsModule } from '@angular/forms';
             </div>
 
             <div class="form-control mt-6">
-              <button class="btn btn-primary">Verify</button>
+              <button class="btn btn-primary" routerLink="/profile">Verify</button>
             </div>
           </form>
 
