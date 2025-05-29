@@ -1,0 +1,66 @@
+<div class="min-h-screen bg-base-200 flex items-center justify-center px-4">
+  <div class="card w-full max-w-md bg-base-100 shadow-xl">
+    <div class="card-body">
+      <div class="tabs tabs-boxed mb-6">
+        <a class="tab" routerLink="/auth/login">Login</a>
+        <a class="tab tab-active" routerLink="/auth/register">Register</a>
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-4">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Full Name</span>
+          </label>
+          <input type="text" formControlName="fullName" placeholder="Enter your full name" 
+                 class="input input-bordered w-full min-h-[44px]" />
+          <label class="label" *ngIf="registerForm.get('fullName')?.touched && registerForm.get('fullName')?.invalid">
+            <span class="label-text-alt text-error">Name must be between 2 and 50 characters</span>
+          </label>
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input type="email" formControlName="email" placeholder="Enter your email" 
+                 class="input input-bordered w-full min-h-[44px]" />
+          <label class="label" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+            <span class="label-text-alt text-error">Please enter a valid email</span>
+          </label>
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Password</span>
+          </label>
+          <input type="password" formControlName="password" placeholder="Enter your password" 
+                 class="input input-bordered w-full min-h-[44px]" />
+          <label class="label" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+            <span class="label-text-alt text-error">Password must be at least 8 characters</span>
+          </label>
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Confirm Password</span>
+          </label>
+          <input type="password" formControlName="confirmPassword" placeholder="Confirm your password" 
+                 class="input input-bordered w-full min-h-[44px]" />
+          <label class="label" *ngIf="registerForm.hasError('mismatch')">
+            <span class="label-text-alt text-error">Passwords do not match</span>
+          </label>
+        </div>
+
+        <div class="alert alert-error" *ngIf="errorMessage">
+          <span>{{ errorMessage }}</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-full min-h-[44px]" 
+                [disabled]="!registerForm.valid || isLoading">
+          <span class="loading loading-spinner" *ngIf="isLoading"></span>
+          {{ isLoading ? 'Creating Account...' : 'Create Account' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
