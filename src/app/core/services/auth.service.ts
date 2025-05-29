@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+
+interface GoogleUser {
+  id: string;
+  email: string;
+  name: string;
+  photoUrl: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +16,12 @@ export class AuthService {
   private readonly TOKEN_KEY = 'auth_token';
   private readonly USER_KEY = 'user_data';
 
-  constructor(private socialAuthService: SocialAuthService) {}
+  constructor() {}
 
   requestOTP(email: string): Observable<any> {
     // Mock API response for OTP request
     if (email.includes('@')) {
-      return of({ success: true, message: 'OTP sent successfully' }).pipe(delay(1000));
+      return of({ success: true, message: 'Verification code sent successfully' }).pipe(delay(1000));
     }
     return throwError(() => new Error('Invalid email address'));
   }
@@ -34,10 +40,10 @@ export class AuthService {
       this.setSession(mockResponse);
       return of(mockResponse).pipe(delay(1000));
     }
-    return throwError(() => new Error('Invalid OTP'));
+    return throwError(() => new Error('Invalid verification code'));
   }
 
-  handleGoogleLogin(user: SocialUser): Observable<any> {
+  handleGoogleLogin(user: GoogleUser): Observable<any> {
     // Mock API response for Google login
     const mockResponse = {
       token: 'mock_jwt_token',
@@ -55,7 +61,6 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem(this.TOKEN_KEY);
     localStorage.removeItem(this.USER_KEY);
-    this.socialAuthService.signOut();
   }
 
   isAuthenticated(): boolean {
