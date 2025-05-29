@@ -13,7 +13,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<any> {
     // Mock API response
-    if (email === 'test@example.com' && password === 'password123') {
+    if (email === 'test@example.com' && password === 'admin1234') {
       const mockResponse = {
         token: 'mock_jwt_token',
         user: {
