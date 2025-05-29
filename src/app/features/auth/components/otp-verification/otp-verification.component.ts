@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-otp-verification',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
       <div class="card w-full max-w-md bg-base-100 shadow-xl">
         <div class="card-body">
           <h2 class="card-title">Verify Your Email</h2>
-          <p class="text-sm text-gray-600">Enter the 6-digit code sent to your email</p>
+          <p class="text-sm text-gray-600">Enter the 6-digit code sent to {{ email }}</p>
           
           <form [formGroup]="otpForm" (ngSubmit)="onSubmit()" class="space-y-4">
             <div class="grid grid-cols-6 gap-2">
@@ -23,6 +24,10 @@ import { Router } from '@angular/router';
                      class="input input-bordered w-full text-center"
                      (keyup)="onKeyUp($event, i)"
                      (paste)="onPaste($event)">
+            </div>
+
+            <div class="alert alert-error" *ngIf="errorMessage">
+              <span>{{ errorMessage }}</span>
             </div>
 
             <div class="flex justify-between items-center">
@@ -38,6 +43,7 @@ import { Router } from '@angular/router';
             <button type="submit" 
                     class="btn btn-primary w-full" 
                     [disabled]="!otpForm.valid || isLoading">
+              <span class="loading loading-spinner" *ngIf="isLoading"></span>
               {{ isLoading ? 'Verifying...' : 'Verify' }}
             </button>
           </form>
@@ -52,11 +58,14 @@ export class OtpVerificationComponent implements OnInit {
   resendTimer = 60;
   attemptsLeft = 3;
   canResend = false;
+  errorMessage = '';
+  email = '';
   private timerInterval: any;
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.otpForm = this.fb.group({
       digit0: ['', [Validators.required, Validators.pattern(/^[0-9]$/)]],
@@ -73,6 +82,11 @@ export class OtpVerificationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.email = sessionStorage.getItem('auth_email') || '';
+    if (!this.email) {
+      this.router.navigate(['/auth/login']);
+      return;
+    }
     this.startResendTimer();
   }
 
@@ -126,20 +140,30 @@ export class OtpVerificationComponent implements OnInit {
     if (this.attemptsLeft > 0 && this.canResend) {
       this.attemptsLeft--;
       this.startResendTimer();
-      // Implement resend logic here
+      this.authService.requestOTP(this.email).subscribe({
+        error: (error) => {
+          this.errorMessage = error.message || 'Failed to resend OTP';
+        }
+      });
     }
   }
 
   onSubmit() {
     if (this.otpForm.valid) {
       this.isLoading = true;
-      const otp = Object.values(this.otpForm.value).join('');
+      this.errorMessage = '';
       
-      // Mock verification
-      setTimeout(() => {
-        this.isLoading = false;
-        this.router.navigate(['/dashboard']);
-      }, 1500);
+      const otp = Object.values(this.otpForm.value).join('');
+      this.authService.verifyOTP(this.email, otp).subscribe({
+        next: () => {
+          sessionStorage.removeItem('auth_email');
+          this.router.navigate(['/dashboard']);
+        },
+        error: (error) => {
+          this.isLoading = false;
+          this.errorMessage = error.message || 'Invalid OTP';
+        }
+      });
     }
   }
 

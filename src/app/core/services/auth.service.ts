@@ -11,26 +11,29 @@ export class AuthService {
 
   constructor() {}
 
-  login(email: string, password: string): Observable<any> {
-    // Mock API response
-    if (email === 'test@example.com' && password === 'admin1234') {
+  requestOTP(email: string): Observable<any> {
+    // Mock API response for OTP request
+    if (email.includes('@')) {
+      return of({ success: true, message: 'OTP sent successfully' }).pipe(delay(1000));
+    }
+    return throwError(() => new Error('Invalid email address'));
+  }
+
+  verifyOTP(email: string, otp: string): Observable<any> {
+    // Mock API response for OTP verification
+    if (otp === '123456') { // For testing purposes
       const mockResponse = {
         token: 'mock_jwt_token',
         user: {
           id: '1',
           email,
-          name: 'Test User'
+          name: email.split('@')[0]
         }
       };
       this.setSession(mockResponse);
       return of(mockResponse).pipe(delay(1000));
     }
-    return throwError(() => new Error('Invalid credentials'));
-  }
-
-  register(userData: any): Observable<any> {
-    // Mock registration
-    return of({ success: true }).pipe(delay(1000));
+    return throwError(() => new Error('Invalid OTP'));
   }
 
   logout(): void {

@@ -11,11 +11,6 @@ export const routes: Routes = [
           .then(m => m.LoginComponent)
       },
       {
-        path: 'register',
-        loadComponent: () => import('./features/auth/components/register/register.component')
-          .then(m => m.RegisterComponent)
-      },
-      {
         path: 'verify',
         loadComponent: () => import('./features/auth/components/otp-verification/otp-verification.component')
           .then(m => m.OtpVerificationComponent)
