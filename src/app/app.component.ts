@@ -9,11 +9,5 @@ import { RouterOutlet } from '@angular/router';
   template: '<router-outlet></router-outlet>'
 })
 export class AppComponent {
-  title = 'angular-tailwind-daisyui';
-  isDarkTheme = false;
-
-  toggleTheme() {
-    this.isDarkTheme = !this.isDarkTheme;
-    document.documentElement.setAttribute('data-theme', this.isDarkTheme ? 'dark' : 'light');
-  }
+  
 }
