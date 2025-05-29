@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { 
@@ -16,7 +16,7 @@ import {
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterOutlet, NgIconComponent],
+  imports: [CommonModule, RouterLink, RouterOutlet, RouterLinkActive, NgIconComponent],
   providers: [
     provideIcons({ 
       heroHome, 
@@ -87,7 +87,8 @@ import {
               <li>
                 <a routerLink="/dashboard" 
                    routerLinkActive="active" 
-                   [routerLinkActiveOptions]="{exact: true}"
+                   [routerLinkActive]="'active'"
+                   [routerLinkActiveOptions]="{ exact: true }"
                    class="flex items-center gap-4">
                   <ng-icon name="heroHome" class="w-5 h-5"></ng-icon>
                   Overview
