@@ -102,8 +102,8 @@ import {
               <div class="text-white text-xl font-bold">F</div>
             </div>
             <div>
-              <h1 class="text-xl font-bold">My Finance</h1>
-              <p class="text-xs opacity-50">Payment Portal</p>
+              <h1 class="text-xl font-bold">Ecoma</h1>
+              <p class="text-xs opacity-50">Account</p>
             </div>
           </div>
         </div>
