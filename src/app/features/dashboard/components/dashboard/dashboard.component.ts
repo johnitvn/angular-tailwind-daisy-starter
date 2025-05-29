@@ -42,8 +42,8 @@ import {
           <div class="flex-1">
             <div class="text-sm breadcrumbs">
               <ul>
-                <li>Dashboard</li>
-                <li>My Profile</li>
+                <li>Ecoma</li>
+                <li>Account</li>
               </ul>
             </div>
           </div>
