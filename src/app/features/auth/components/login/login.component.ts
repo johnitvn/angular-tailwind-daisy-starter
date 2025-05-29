@@ -54,18 +54,7 @@ import {
               </label>
             </div>
 
-            <div class="alert alert-info shadow-lg" *ngIf="!errorMessage">
-              <ng-icon 
-                name="heroInformationCircle"
-                class="shrink-0 w-6 h-6">
-              </ng-icon>
-              <div>
-                <h3 class="font-bold">First time here?</h3>
-                <div class="text-xs">We'll automatically create your account and send you a verification code.</div>
-              </div>
-            </div>
-
-            <div class="alert alert-error shadow-lg" *ngIf="errorMessage">
+                       <div class="alert alert-error shadow-lg" *ngIf="errorMessage">
               <ng-icon 
                 name="heroExclamationCircle"
                 class="shrink-0 w-6 h-6">
