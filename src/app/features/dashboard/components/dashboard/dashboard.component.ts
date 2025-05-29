@@ -36,29 +36,58 @@ import {
   ],
   template: `
     <div class="min-h-screen bg-base-200/50">
-      <!-- Sidebar -->
-      <div class="fixed top-0 left-0 h-screen w-[280px] bg-base-100 shadow-lg p-6 flex flex-col gap-8 z-20">
-        <!-- Logo -->
-        <div class="flex items-center gap-3">
-          <div class="avatar placeholder">
-            <div class="bg-primary/10 text-primary rounded-lg w-10">
-              <span class="text-xl">D</span>
-            </div>
+      <!-- Fixed Header -->
+      <div class="fixed top-0 left-[280px] right-0 bg-base-100 z-10">
+        <div class="navbar min-h-[70px] px-6">
+          <div class="flex-1">
+            <h2 class="text-2xl font-bold">Welcome back, {{ getUserName().split(' ')[0] }}!</h2>
           </div>
-          <div>
-            <h1 class="text-xl font-bold">Dashboard</h1>
-            <p class="text-xs opacity-50">Finance Portal</p>
+          <div class="flex-none gap-4">
+            <button class="btn btn-ghost btn-circle">
+              <div class="indicator">
+                <ng-icon name="heroBell" class="w-5 h-5"></ng-icon>
+                <span class="badge badge-sm badge-primary indicator-item">2</span>
+              </div>
+            </button>
+            <button class="btn btn-ghost btn-circle">
+              <div class="indicator">
+                <ng-icon name="heroEnvelope" class="w-5 h-5"></ng-icon>
+                <span class="badge badge-sm badge-primary indicator-item">4</span>
+              </div>
+            </button>
+          </div>
+        </div>
+        <!-- Rounded corner decoration -->
+        <div class="absolute left-0 top-[70px] w-6 h-6 bg-base-100">
+          <div class="absolute inset-0 bg-base-200/50 rounded-tl-xl"></div>
+        </div>
+      </div>
+
+      <!-- Fixed Sidebar -->
+      <div class="fixed top-0 left-0 h-screen w-[280px] bg-base-100 z-20 flex flex-col">
+        <!-- Logo -->
+        <div class="p-6 pb-0">
+          <div class="flex items-center gap-3">
+            <div class="avatar placeholder">
+              <div class="bg-primary/10 text-primary rounded-lg w-10">
+                <span class="text-xl">D</span>
+              </div>
+            </div>
+            <div>
+              <h1 class="text-xl font-bold">Dashboard</h1>
+              <p class="text-xs opacity-50">Finance Portal</p>
+            </div>
           </div>
         </div>
 
         <!-- Navigation -->
-        <nav class="flex-1">
+        <nav class="flex-1 px-4 py-6">
           <ul class="menu menu-lg gap-2">
             <li>
               <a routerLink="/dashboard" 
                  routerLinkActive="active" 
                  [routerLinkActiveOptions]="{ exact: true }"
-                 class="flex items-center gap-4 min-h-12">
+                 class="flex items-center gap-4 min-h-12 rounded-xl">
                 <ng-icon name="heroHome" class="w-5 h-5"></ng-icon>
                 Overview
               </a>
@@ -66,7 +95,7 @@ import {
             <li>
               <a routerLink="profile" 
                  routerLinkActive="active"
-                 class="flex items-center gap-4 min-h-12">
+                 class="flex items-center gap-4 min-h-12 rounded-xl">
                 <ng-icon name="heroUser" class="w-5 h-5"></ng-icon>
                 Profile
               </a>
@@ -74,7 +103,7 @@ import {
             <li>
               <a routerLink="sessions" 
                  routerLinkActive="active"
-                 class="flex items-center gap-4 min-h-12">
+                 class="flex items-center gap-4 min-h-12 rounded-xl">
                 <ng-icon name="heroComputerDesktop" class="w-5 h-5"></ng-icon>
                 Sessions
               </a>
@@ -82,7 +111,7 @@ import {
             <li>
               <a routerLink="settings" 
                  routerLinkActive="active"
-                 class="flex items-center gap-4 min-h-12">
+                 class="flex items-center gap-4 min-h-12 rounded-xl">
                 <ng-icon name="heroCog6Tooth" class="w-5 h-5"></ng-icon>
                 Settings
               </a>
@@ -91,8 +120,8 @@ import {
         </nav>
 
         <!-- User Menu -->
-        <div class="border-t pt-4">
-          <div class="flex items-center gap-4 p-4 bg-base-200 rounded-xl">
+        <div class="p-4 m-4 bg-base-200 rounded-xl">
+          <div class="flex items-center gap-4">
             <div class="avatar placeholder">
               <div class="bg-neutral text-neutral-content rounded-xl w-10">
                 <span>{{ getUserInitials() }}</span>
@@ -115,34 +144,8 @@ import {
       </div>
 
       <!-- Main Content -->
-      <div class="pl-[280px]">
-        <!-- Top Navigation -->
-        <div class="bg-base-100 shadow-sm">
-          <div class="container mx-auto">
-            <div class="navbar min-h-[70px]">
-              <div class="flex-1">
-                <h2 class="text-2xl font-bold">Welcome back, {{ getUserName().split(' ')[0] }}!</h2>
-              </div>
-              <div class="flex-none gap-4">
-                <button class="btn btn-ghost btn-circle">
-                  <div class="indicator">
-                    <ng-icon name="heroBell" class="w-5 h-5"></ng-icon>
-                    <span class="badge badge-sm badge-primary indicator-item">2</span>
-                  </div>
-                </button>
-                <button class="btn btn-ghost btn-circle">
-                  <div class="indicator">
-                    <ng-icon name="heroEnvelope" class="w-5 h-5"></ng-icon>
-                    <span class="badge badge-sm badge-primary indicator-item">4</span>
-                  </div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Page Content -->
-        <div class="container mx-auto p-6">
+      <div class="pl-[280px] pt-[70px]">
+        <div class="p-6">
           <router-outlet></router-outlet>
         </div>
       </div>
