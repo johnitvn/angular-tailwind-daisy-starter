@@ -19,26 +19,27 @@ import {
     provideIcons({ heroEnvelope, heroInformationCircle, heroExclamationCircle, heroArrowRightOnRectangle })
   ],
   template: `
-    <div class="min-h-screen relative bg-gradient-to-br from-primary/5 via-base-100 to-secondary/5 flex items-center justify-center p-4">
+    <div class="min-h-screen relative bg-gradient-to-br from-base-300 to-base-100 flex items-center justify-center p-4 overflow-hidden">
       <!-- Animated background elements -->
-      <div class="absolute inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute top-0 -left-4 w-72 h-72 bg-primary/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div class="absolute top-0 -right-4 w-72 h-72 bg-secondary/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-accent/30 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute w-[800px] h-[800px] -top-[400px] -left-[400px]">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/40 to-secondary/40 rounded-full filter blur-3xl pulse-slow"></div>
+        </div>
+        <div class="absolute w-[600px] h-[600px] -bottom-[300px] -right-[300px]">
+          <div class="absolute inset-0 bg-gradient-to-br from-secondary/40 to-accent/40 rounded-full filter blur-3xl pulse-slow" style="animation-delay: -4s;"></div>
+        </div>
       </div>
 
-      <div class="card w-full max-w-md bg-base-100 shadow-2xl">
+      <div class="card w-full max-w-md bg-base-100/70 glass-effect shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-xl">
         <div class="card-body space-y-8">
-          <!-- Header with animated gradient text -->
+          <!-- Header -->
           <div class="text-center space-y-3">
-            <div class="avatar placeholder online mb-4">
-              <div class="bg-primary/10 text-primary rounded-full w-24">
+            <div class="avatar placeholder online mb-4 floating">
+              <div class="bg-gradient-to-br from-primary/20 to-secondary/20 text-primary rounded-full w-24">
                 <span class="text-3xl">W</span>
               </div>
             </div>
-            <h1 class="text-4xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-gradient">
-              Welcome Back
-            </h1>
+            <h1 class="text-4xl font-bold text-base-content">Welcome Back</h1>
             <p class="text-base-content/70">
               Sign in to your account or create a new one instantly
             </p>
@@ -47,16 +48,16 @@ import {
           <!-- Login Form -->
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
             <div class="form-control">
-              <div class="relative">
+              <div class="relative group">
                 <ng-icon 
                   name="heroEnvelope"
-                  class="absolute left-3 top-1/2 -translate-y-1/2 text-base-content/50 w-5 h-5">
+                  class="absolute left-3 top-1/2 -translate-y-1/2 text-base-content/50 w-5 h-5 transition-colors group-focus-within:text-primary">
                 </ng-icon>
                 <input 
                   type="email" 
                   formControlName="email" 
                   placeholder="Enter your email" 
-                  class="input input-bordered w-full pl-10 min-h-12 bg-base-200/50 focus:bg-base-100 transition-all duration-300" />
+                  class="input input-bordered w-full pl-10 min-h-12 bg-base-100/50 focus:bg-base-100 transition-all duration-300 border-2" />
               </div>
               <label class="label" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
                 <span class="label-text-alt text-error flex items-center gap-1">
@@ -82,7 +83,7 @@ import {
               <div class="divider text-base-content/50">OR</div>
 
               <button type="button" 
-                      class="btn btn-outline w-full gap-2 min-h-12 hover:shadow-lg transition-all duration-300"
+                      class="btn bg-base-100 hover:bg-base-200 w-full gap-2 min-h-12 transition-all duration-300 border-2"
                       (click)="loginWithGoogle()">
                 <img src="https://www.google.com/favicon.ico" alt="Google" class="w-5 h-5" />
                 Continue with Google
@@ -91,13 +92,13 @@ import {
           </form>
 
           <!-- Info Cards -->
-          <div class="grid grid-cols-2 gap-4 mt-6">
-            <div class="bg-base-200/50 rounded-lg p-4 text-center">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-base-100/50 rounded-lg p-4 text-center backdrop-blur-sm border border-base-200">
               <div class="stat-title text-xs">Instant Access</div>
               <div class="stat-value text-primary text-xl">2 Seconds</div>
               <div class="stat-desc text-xs">Average login time</div>
             </div>
-            <div class="bg-base-200/50 rounded-lg p-4 text-center">
+            <div class="bg-base-100/50 rounded-lg p-4 text-center backdrop-blur-sm border border-base-200">
               <div class="stat-title text-xs">Secure Login</div>
               <div class="stat-value text-secondary text-xl">256-bit</div>
               <div class="stat-desc text-xs">SSL encryption</div>
@@ -110,9 +111,9 @@ import {
               By continuing, you agree to our
             </p>
             <div class="flex justify-center gap-2 text-sm">
-              <a href="#" class="link link-primary hover:text-primary transition-colors duration-300">Terms of Service</a>
+              <a href="#" class="link link-hover text-primary">Terms of Service</a>
               <span class="text-base-content/50">&</span>
-              <a href="#" class="link link-primary hover:text-primary transition-colors duration-300">Privacy Policy</a>
+              <a href="#" class="link link-hover text-primary">Privacy Policy</a>
             </div>
           </div>
         </div>
