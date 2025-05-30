@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
         <div class="w-10 h-10 rounded-full bg-gray-300"></div>
         <div>
           <h3 class="font-medium">Jhon Steve</h3>
-          <p class="text-sm text-gray-500">jhonsteve@gmail.com</p>
+          <p class="text-sm text-gray-500">jhonsteve&#64;gmail.com</p>
         </div>
       </div>
 
