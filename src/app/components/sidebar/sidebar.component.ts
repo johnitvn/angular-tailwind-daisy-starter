@@ -1,10 +1,37 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { 
+  heroHome, 
+  heroRocketLaunch,
+  heroCalendarDays,
+  heroUserGroup,
+  heroChartBar,
+  heroClipboardDocument,
+  heroDocumentText,
+  heroCog6Tooth,
+  heroQuestionMarkCircle,
+  heroUsers
+} from '@ng-icons/heroicons/outline';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgIconComponent],
+  providers: [
+    provideIcons({ 
+      heroHome, 
+      heroRocketLaunch,
+      heroCalendarDays,
+      heroUserGroup,
+      heroChartBar,
+      heroClipboardDocument,
+      heroDocumentText,
+      heroCog6Tooth,
+      heroQuestionMarkCircle,
+      heroUsers
+    })
+  ],
   template: `
     <div class="h-screen w-64 bg-base-200 p-4 flex flex-col">
       <div class="flex items-center gap-2 mb-8">
@@ -24,22 +51,52 @@ import { CommonModule } from '@angular/common';
         <div class="mb-4">
           <h4 class="text-xs font-semibold text-gray-500 mb-2 px-3">MAIN MENU</h4>
           <ul class="space-y-1">
-            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">Dashboard</a></li>
-            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">Automate</a></li>
-            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">Post Scheduler</a></li>
-            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">Accounts</a></li>
-            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">Analytics</a></li>
-            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">Content Calendar</a></li>
-            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">Reports</a></li>
-            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">Team Collaboration</a></li>
+            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">
+              <ng-icon name="heroHome" class="w-5 h-5"></ng-icon>
+              Dashboard
+            </a></li>
+            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">
+              <ng-icon name="heroRocketLaunch" class="w-5 h-5"></ng-icon>
+              Automate
+            </a></li>
+            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">
+              <ng-icon name="heroCalendarDays" class="w-5 h-5"></ng-icon>
+              Post Scheduler
+            </a></li>
+            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">
+              <ng-icon name="heroUserGroup" class="w-5 h-5"></ng-icon>
+              Accounts
+            </a></li>
+            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">
+              <ng-icon name="heroChartBar" class="w-5 h-5"></ng-icon>
+              Analytics
+            </a></li>
+            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">
+              <ng-icon name="heroCalendarDays" class="w-5 h-5"></ng-icon>
+              Content Calendar
+            </a></li>
+            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">
+              <ng-icon name="heroDocumentText" class="w-5 h-5"></ng-icon>
+              Reports
+            </a></li>
+            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">
+              <ng-icon name="heroUsers" class="w-5 h-5"></ng-icon>
+              Team Collaboration
+            </a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="text-xs font-semibold text-gray-500 mb-2 px-3">PREFERENCE</h4>
           <ul class="space-y-1">
-            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">Settings</a></li>
-            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">Help Center</a></li>
+            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">
+              <ng-icon name="heroCog6Tooth" class="w-5 h-5"></ng-icon>
+              Settings
+            </a></li>
+            <li><a class="flex items-center gap-3 p-3 rounded-lg hover:bg-base-100">
+              <ng-icon name="heroQuestionMarkCircle" class="w-5 h-5"></ng-icon>
+              Help Center
+            </a></li>
           </ul>
         </div>
       </nav>
