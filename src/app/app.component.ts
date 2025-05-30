@@ -11,9 +11,9 @@ import { StatsCardsComponent } from './components/stats-cards/stats-cards.compon
   template: `
     <div class="flex min-h-screen bg-base-200">
       <app-sidebar></app-sidebar>
-      <div class="flex-1 lg:ml-0">
-        <app-dashboard-header></app-dashboard-header>
-        <main class="p-4 lg:p-6">
+      <div class="flex-1 lg:ml-0 flex flex-col">
+        <app-dashboard-header class="sticky top-0 z-30"></app-dashboard-header>
+        <main class="flex-1 p-4 lg:p-6 overflow-auto">
           <app-stats-cards></app-stats-cards>
           
           <!-- Automation Overview Section -->

@@ -62,7 +62,7 @@ interface MenuItem {
       [class.w-16]="isCollapsed()"
       [class.translate-x-0]="isMobileMenuOpen()"
       [class.translate-x-[-100%]]="!isMobileMenuOpen()"
-      class="h-screen bg-base-200 p-4 flex flex-col fixed lg:relative transition-all duration-300 z-40 lg:translate-x-0">
+      class="h-screen bg-base-200 p-4 flex flex-col fixed lg:sticky top-0 transition-all duration-300 z-40 lg:translate-x-0 overflow-y-auto">
       
       <!-- Logo -->
       <div class="flex items-center gap-2 mb-8" [class.justify-center]="isCollapsed()">
