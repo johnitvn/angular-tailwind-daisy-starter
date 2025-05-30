@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="grid grid-cols-5 gap-4 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mb-8">
       <div class="stat bg-base-100 rounded-lg p-4">
         <div class="stat-title text-gray-500">Total Followers</div>
         <div class="stat-value text-2xl font-bold">235.5k</div>

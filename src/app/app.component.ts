@@ -11,16 +11,16 @@ import { StatsCardsComponent } from './components/stats-cards/stats-cards.compon
   template: `
     <div class="flex min-h-screen bg-base-200">
       <app-sidebar></app-sidebar>
-      <div class="flex-1">
+      <div class="flex-1 lg:ml-0">
         <app-dashboard-header></app-dashboard-header>
-        <main class="p-6">
+        <main class="p-4 lg:p-6">
           <app-stats-cards></app-stats-cards>
           
           <!-- Automation Overview Section -->
-          <div class="bg-base-100 rounded-lg p-6 mb-8">
-            <div class="flex justify-between items-center mb-6">
+          <div class="bg-base-100 rounded-lg p-4 lg:p-6 mb-8">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
               <h2 class="text-xl font-semibold">Automation Overview</h2>
-              <select class="select select-bordered w-32">
+              <select class="select select-bordered w-full lg:w-32">
                 <option>Weekly</option>
                 <option>Monthly</option>
               </select>
@@ -30,15 +30,15 @@ import { StatsCardsComponent } from './components/stats-cards/stats-cards.compon
           </div>
           
           <!-- Medsos Overview Section -->
-          <div class="bg-base-100 rounded-lg p-6">
-            <div class="flex justify-between items-center mb-6">
+          <div class="bg-base-100 rounded-lg p-4 lg:p-6">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 mb-6">
               <h2 class="text-xl font-semibold">Medsos Overview</h2>
-              <select class="select select-bordered w-32">
+              <select class="select select-bordered w-full lg:w-32">
                 <option>Monthly</option>
                 <option>Weekly</option>
               </select>
             </div>
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <!-- Social Media Stats -->
               <div class="space-y-4">
                 <div class="p-4 bg-base-200 rounded-lg">
